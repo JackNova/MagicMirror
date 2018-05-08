@@ -1,51 +1,36 @@
-/* global Module */
-
-/* Magic Mirror
- * Module: CurrentWeather
- *
- * By Michael Teeuw http://michaelteeuw.nl
- * MIT Licensed.
- */
-
-Module.register("currentweather",{
-
-	// Default module config.
-	defaults: {
-		location: false,
-		locationID: false,
-		appid: "",
-		units: config.units,
-		updateInterval: 10 * 60 * 1000, // every 10 minutes
-		animationSpeed: 1000,
-		timeFormat: config.timeFormat,
-		showPeriod: true,
-		showPeriodUpper: false,
-		showWindDirection: true,
-		showWindDirectionAsArrow: false,
-		useBeaufort: true,
-		useKMPHwind: false,
-		lang: config.language,
-		decimalSymbol: ".",
-		showHumidity: false,
-		degreeLabel: false,
-		showIndoorTemperature: false,
-		showIndoorHumidity: false,
-		showFeelsLike: true,
-
-		initialLoadDelay: 0, // 0 seconds delay
-		retryDelay: 2500,
-
-		apiVersion: "2.5",
-		apiBase: "https://api.openweathermap.org/data/",
-		weatherEndpoint: "weather",
-
-		appendLocationNameToHeader: true,
-		calendarClass: "calendar",
-
-		onlyTemp: false,
-		roundTemp: false,
-
-		iconTable: {
+(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+module.exports={
+	"defaults": {
+		"location2": false,
+		"locationID": false,
+		"appid": "",
+		"units": "${config.units}",
+		"updateInterval": 600000,
+		"animationSpeed": 1000,
+		"timeFormat": "${config.timeFormat}",
+		"showPeriod": true,
+		"showPeriodUpper": false,
+		"showWindDirection": true,
+		"showWindDirectionAsArrow": false,
+		"useBeaufort": true,
+		"useKMPHwind": false,
+		"lang": "${config.language}",
+		"decimalSymbol": ".",
+		"showHumidity": false,
+		"degreeLabel": false,
+		"showIndoorTemperature": false,
+		"showIndoorHumidity": false,
+		"showFeelsLike": true,
+		"initialLoadDelay": 0,
+		"retryDelay": 2500,
+		"apiVersion": "2.5",
+		"apiBase": "https://api.openweathermap.org/data/",
+		"weatherEndpoint": "weather",
+		"appendLocationNameToHeader": true,
+		"calendarClass": "calendar",
+		"onlyTemp": false,
+		"roundTemp": false,
+		"iconTable": {
 			"01d": "wi-day-sunny",
 			"02d": "wi-day-cloudy",
 			"03d": "wi-cloudy",
@@ -64,8 +49,25 @@ Module.register("currentweather",{
 			"11n": "wi-night-thunderstorm",
 			"13n": "wi-night-snow",
 			"50n": "wi-night-alt-cloudy-windy"
-		},
-	},
+		}
+	}
+}
+},{}],2:[function(require,module,exports){
+/* global Module */
+
+/* Magic Mirror
+ * Module: CurrentWeather
+ *
+ * By Michael Teeuw http://michaelteeuw.nl
+ * MIT Licensed.
+ */
+const defaultConfig = require ('../defaultConfig.json');
+Log.info("Module currentweather configuration: " + JSON.stringify(defaultConfig.defaults));
+
+Module.register("currentweather",{
+
+	// Default module config.
+	defaults: defaultConfig.defaults,
 
 	// create a variable for the first upcoming calendaar event. Used if no location is specified.
 	firstEvent: false,
@@ -572,3 +574,5 @@ Module.register("currentweather",{
 	}
 
 });
+
+},{"../defaultConfig.json":1}]},{},[2]);

@@ -1,3 +1,37 @@
+(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+module.exports={
+    "defaults":
+		{
+			"compliments": {
+				"anytime": [
+					"Hey there sexy!"
+				],
+				"morning": [
+					"Good morning, handsome!",
+					"Enjoy your day!",
+					"How was your sleep?"
+				],
+				"afternoon": [
+					"Hello, beauty!",
+					"You look sexy!",
+					"Looking good today!"
+				],
+				"evening": [
+					"Wow, you look hot!",
+					"You look nice!",
+					"Hi, sexy!"
+				]
+			},
+			"updateInterval": 30000,
+			"remoteFile": null,
+			"fadeSpeed": 4000,
+			"morningStartTime": 3,
+			"morningEndTime": 12,
+			"afternoonStartTime": 12,
+			"afternoonEndTime": 17
+		}
+}
+},{}],2:[function(require,module,exports){
 /* global Log, Module, moment */
 
 /* Magic Mirror
@@ -6,38 +40,14 @@
  * By Michael Teeuw http://michaelteeuw.nl
  * MIT Licensed.
  */
+
+const defaultConfig = require ('../defaultConfig.json');
+Log.info("Module compliments configuration: " + JSON.stringify(defaultConfig.defaults));
+
 Module.register("compliments", {
 
 	// Module config defaults.
-	defaults: {
-		compliments: {
-			anytime: [
-				"Hey there sexy!"
-			],
-			morning: [
-				"Good morning, handsome!",
-				"Enjoy your day!",
-				"How was your sleep?"
-			],
-			afternoon: [
-				"Hello, beauty!",
-				"You look sexy!",
-				"Looking good today!"
-			],
-			evening: [
-				"Wow, you look hot!",
-				"You look nice!",
-				"Hi, sexy!"
-			]
-		},
-		updateInterval: 30000,
-		remoteFile: null,
-		fadeSpeed: 4000,
-		morningStartTime: 3,
-		morningEndTime: 12,
-		afternoonStartTime: 12,
-		afternoonEndTime: 17
-	},
+	defaults: defaultConfig.defaults,
 
 	// Set currentweather from module
 	currentWeatherType: "",
@@ -198,3 +208,4 @@ Module.register("compliments", {
 	},
 
 });
+},{"../defaultConfig.json":1}]},{},[2]);

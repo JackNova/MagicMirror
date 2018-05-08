@@ -1,3 +1,15 @@
+(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+module.exports={
+    "defaults":
+		{
+		"effect": "slide",
+		"alert_effect": "jelly",
+		"display_time": 3500,
+		"position": "center",
+		"welcome_message": true
+		}
+}
+},{}],2:[function(require,module,exports){
 /* global Module */
 
 /* Magic Mirror
@@ -7,25 +19,22 @@
  * MIT Licensed.
  */
 
+
+const defaultConfig = require ('../defaultConfig.json');
+Log.info("Module alert configuration: " + JSON.stringify(defaultConfig.defaults));
+
 Module.register("alert",{
-	defaults: {
-		// scale|slide|genie|jelly|flip|bouncyflip|exploader
-		effect: "slide",
-		// scale|slide|genie|jelly|flip|bouncyflip|exploader
-		alert_effect: "jelly",
-		//time a notification is displayed in seconds
-		display_time: 3500,
-		//Position
-		position: "center",
-		//shown at startup
-		welcome_message: false,
-	},
+
+	defaults: defaultConfig.defaults,
+
 	getScripts: function() {
 		return ["classie.js", "modernizr.custom.js", "notificationFx.js"];
 	},
+	
 	getStyles: function() {
 		return ["ns-default.css"];
 	},
+
 	// Define required translations.
 	getTranslations: function() {
 		return {
@@ -34,6 +43,7 @@ Module.register("alert",{
 			nl: "translations/nl.json",
 		};
 	},
+
 	show_notification: function(message) {
 		if (this.config.effect == "slide") {this.config.effect = this.config.effect + "-" + this.config.position;}
 		msg = "";
@@ -54,6 +64,7 @@ Module.register("alert",{
 			ttl: this.config.display_time
 		}).show();
 	},
+
 	show_alert: function(params, sender) {
 		var self = this;
 		//Set standard params if not provided by module
@@ -108,6 +119,7 @@ Module.register("alert",{
 		}
 
 	},
+
 	hide_alert: function(sender) {
 		//Dismiss alert and remove from this.alerts
 		this.alerts[sender.name].dismiss();
@@ -116,6 +128,7 @@ Module.register("alert",{
 		var overlay = document.getElementById("overlay");
 		overlay.parentNode.removeChild(overlay);
 	},
+
 	setPosition: function(pos) {
 		//Add css to body depending on the set position for notifications
 		var sheet = document.createElement("style");
@@ -125,6 +138,7 @@ Module.register("alert",{
 		document.body.appendChild(sheet);
 
 	},
+
 	notificationReceived: function(notification, payload, sender) {
 		if (notification === "SHOW_ALERT") {
 			if (typeof payload.type === "undefined") { payload.type = "alert"; }
@@ -137,9 +151,11 @@ Module.register("alert",{
 			this.hide_alert(sender);
 		}
 	},
+
 	start: function() {
 		this.alerts = {};
 		this.setPosition(this.config.position);
+
 		if (this.config.welcome_message) {
 			if (this.config.welcome_message == true){
 				this.show_notification({title: this.translate("sysTitle"), message: this.translate("welcome")});
@@ -148,7 +164,9 @@ Module.register("alert",{
 				this.show_notification({title: this.translate("sysTitle"), message: this.config.welcome_message});
 			}
 		}
-		Log.info("Starting module: " + this.name);
+		Log.info("Starting module: " + this.name + " with config: " + JSON.stringify(this.config));
 	}
 
 });
+
+},{"../defaultConfig.json":1}]},{},[2]);

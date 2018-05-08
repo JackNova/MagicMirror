@@ -19,9 +19,9 @@ var Loader = (function() {
 	/* loadModules()
 	 * Loops thru all modules and requests load for every module.
 	 */
-	var loadModules = function() {
+	var loadModules = async function() {
 
-		var moduleData = getModuleData();
+		var moduleData = await getModuleData();
 
 		var loadNextModule = function() {
 			if (moduleData.length > 0) {
@@ -64,8 +64,11 @@ var Loader = (function() {
 	 *
 	 * return array - module data as configured in config
 	 */
-	var getAllModules = function() {
-		return config.modules;
+	var getAllModules = async function() {
+		const response = await fetch(`${window.location.origin}/config/`);
+
+		const json = await response.json();
+		return json.modules;
 	};
 
 	/* getModuleData()
@@ -73,21 +76,27 @@ var Loader = (function() {
 	 *
 	 * return array - Module information.
 	 */
-	var getModuleData = function() {
-		var modules = getAllModules();
+	var getModuleData = async function() {
+		var modules = await getAllModules();
+
 		var moduleFiles = [];
 
 		for (var m in modules) {
+
+			
 			var moduleData = modules[m];
+			console.log(moduleData);
 			var module = moduleData.module;
 
-			var elements = module.split("/");
-			var moduleName = elements[elements.length - 1];
-			var moduleFolder =  config.paths.modules + "/" + module;
+			var moduleName = module;
+			var moduleFolder =  config.paths.modules + "/" + moduleName;
 
 			if (defaultModules.indexOf(moduleName) !== -1) {
 				moduleFolder =  config.paths.modules + "/default/" + module;
 			}
+
+			console.log(moduleName, moduleFolder);
+
 
 			if (moduleData.disabled === true) {
 				continue;

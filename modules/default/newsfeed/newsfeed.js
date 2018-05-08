@@ -1,3 +1,37 @@
+(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+module.exports={
+    "defaults":
+		{
+			"feeds": [
+				{
+					"title": "New York Times",
+					"url": "http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml",
+					"encoding": "UTF-8" 
+				}
+			],
+			"showSourceTitle": true,
+			"showPublishDate": true,
+			"showDescription": false,
+			"wrapTitle": true,
+			"wrapDescription": true,
+			"truncDescription": true,
+			"lengthDescription": 400,
+			"hideLoading": false,
+			"reloadInterval": 300000,
+			"updateInterval": 10000,
+			"animationSpeed": 2500,
+			"maxNewsItems": 0,
+			"ignoreOldItems": false,
+			"ignoreOlderThan": 86400000,
+			"removeStartTags": "",
+			"removeEndTags": "",
+			"startTags": [],
+			"endTags": [],
+			"prohibitedWords": [],
+			"scrollLength": 500
+		}
+}
+},{}],2:[function(require,module,exports){
 /* global Module */
 
 /* Magic Mirror
@@ -7,38 +41,13 @@
  * MIT Licensed.
  */
 
+const defaultConfig = require ('../defaultConfig.json');
+Log.info("Module currentweather configuration: " + JSON.stringify(defaultConfig.defaults));
+
 Module.register("newsfeed",{
 
 	// Default module config.
-	defaults: {
-		feeds: [
-			{
-				title: "New York Times",
-				url: "http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml",
-				encoding: "UTF-8" //ISO-8859-1
-			}
-		],
-		showSourceTitle: true,
-		showPublishDate: true,
-		showDescription: false,
-		wrapTitle: true,
-		wrapDescription: true,
-		truncDescription: true,
-		lengthDescription: 400,
-		hideLoading: false,
-		reloadInterval: 5 * 60 * 1000, // every 5 minutes
-		updateInterval: 10 * 1000,
-		animationSpeed: 2.5 * 1000,
-		maxNewsItems: 0, // 0 for unlimited
-		ignoreOldItems: false,
-		ignoreOlderThan: 24 * 60 * 60 * 1000, // 1 day
-		removeStartTags: "",
-		removeEndTags: "",
-		startTags: [],
-		endTags: [],
-		prohibitedWords: [],
-		scrollLength: 500
-	},
+	defaults: defaultConfig.defaults,
 
 	// Define required scripts.
 	getScripts: function() {
@@ -388,3 +397,5 @@ Module.register("newsfeed",{
 	},
 
 });
+
+},{"../defaultConfig.json":1}]},{},[2]);

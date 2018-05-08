@@ -50,11 +50,10 @@ var App = function() {
 	 */
 
 	var loadConfig = function(callback) {
+		
 		console.log("Loading config ...");
 		var defaults = require(__dirname + "/defaults.js");
 
-		// For this check proposed to TestSuite
-		// https://forum.magicmirror.builders/topic/1456/test-suite-for-magicmirror/8
 		var configFilename = path.resolve(global.root_path + "/config/config.js");
 		if (typeof(global.configuration_file) !== "undefined") {
 		    configFilename = path.resolve(global.configuration_file);
@@ -63,23 +62,28 @@ var App = function() {
 		try {
 			fs.accessSync(configFilename, fs.F_OK);
 			var c = require(configFilename);
-			checkDeprecatedOptions(c);
+			
+			const modules = require("../config/modules.json").modules;
+
+			c.modules = modules;
+			//checkDeprecatedOptions(c); CONTROLLARE
 			var config = Object.assign(defaults, c);
+			
 			callback(config);
 		} catch (e) {
 			if (e.code == "ENOENT") {
 				console.error(Utils.colors.error("WARNING! Could not find config file. Please create one. Starting with default configuration."));
 			} else if (e instanceof ReferenceError || e instanceof SyntaxError) {
-				console.error(Utils.colors.error("WARNING! Could not validate config file. Please correct syntax errors. Starting with default configuration."));
+				console.error(Utils.colors.error("WARNING! Could not validate config file. Please correct syntax errors. Starting with default configuration." + e));
 			} else {
-				console.error(Utils.colors.error("WARNING! Could not load config file. Starting with default configuration. Error found: " + e));
+				console.error(Utils.colors.error("WARNING! Could not load config file. Starting with default configuration. Error found: " + e ));
 			}
 			callback(defaults);
 		}
 	};
 
 	var checkDeprecatedOptions = function(userConfig) {
-		var deprecated = require(global.root_path + "/js/deprecated.js");
+		var deprecated = require('/Users/admin/Desktop/defaults.js');
 		var deprecatedOptions = deprecated.configs;
 
 		var usedDeprecated = [];

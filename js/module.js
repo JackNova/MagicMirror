@@ -39,6 +39,8 @@ var Module = Class.extend({
 		//Log.log(this.defaults);
 	},
 
+
+
 	/* start()
 	 * Is called when the module is started.
 	 */
@@ -78,33 +80,34 @@ var Module = Class.extend({
 	 * This method can to be subclassed if the module wants to display info on the mirror.
 	 * Alternatively, the getTemplete method could be subclassed.
 	 *
-	 * return DomObject | Promise - The dom or a promise with the dom to display.
+	 * return domobject - The dom to display.
 	 */
 	getDom: function () {
-		return new Promise((resolve) => {
-			var div = document.createElement("div");
-			var template = this.getTemplate();
-			var templateData = this.getTemplateData();
+		var div = document.createElement("div");
+		var template = this.getTemplate();
+		var templateData = this.getTemplateData();
 
-			// Check to see if we need to render a template string or a file.
-			if (/^.*((\.html)|(\.njk))$/.test(template)) {
-				// the template is a filename
-				this.nunjucksEnvironment().render(template, templateData, function (err, res) {
-					if (err) {
-						Log.error(err)
-					}
+		// Check to see if we need to render a template string or a file.
+		if (/^.*((\.html)|(\.njk))$/.test(template)) {
+			// the template is a filename
+			this.nunjucksEnvironment().render(template, templateData, function (err, res) {
+				if (err) {
+					Log.error(err)
+				}
 
-					div.innerHTML = res;
+				// The inner content of the div will be set after the template is received.
+				// This isn't the most optimal way, but since it's near instant
+				// it probably won't be an issue.
+				// If it gives problems, we can always add a way to pre fetch the templates.
+				// Let's not over optimise this ... KISS! :)
+				div.innerHTML = res;
+			});
+		} else {
+			// the template is a template string.
+			div.innerHTML = this.nunjucksEnvironment().renderString(template, templateData);
+		}
 
-					resolve(div);
-				});
-			} else {
-				// the template is a template string.
-				div.innerHTML = this.nunjucksEnvironment().renderString(template, templateData);
-
-				resolve(div);
-			}
-		});
+		return div;
 	},
 
 	/* getHeader()
@@ -139,6 +142,21 @@ var Module = Class.extend({
 	getTemplateData: function () {
 		return {}
 	},
+
+
+	/*
+	Getter/Setter per defaults
+	*/
+
+	getDefault: function(){
+		return this.defaults;
+	},
+
+	setDefault: function (defaultConfig) {
+		this.defaults = defaultConfig;
+		return this.defaults;
+	},
+
 
 	/* notificationReceived(notification, payload, sender)
 	 * This method is called when a notification arrives.
@@ -464,6 +482,12 @@ function cmpVersions(a, b) {
 
 Module.register = function (name, moduleDefinition) {
 
+	// opzione A
+	// moduleDefinition.defaults = risultatoFetch
+
+	// opzione B
+	// moduleDefinitio.configurationFilePath = '..'
+
 	if (moduleDefinition.requiresVersion) {
 		Log.log("Check MagicMirror version for module '" + name + "' - Minimum version:  " + moduleDefinition.requiresVersion + " - Current version: " + version);
 		if (cmpVersions(version, moduleDefinition.requiresVersion) >= 0) {
@@ -476,3 +500,11 @@ Module.register = function (name, moduleDefinition) {
 	Log.log("Module registered: " + name);
 	Module.definitions[name] = moduleDefinition;
 };
+
+if (typeof exports != "undefined") { // For testing purpose only
+	// A good a idea move the function cmpversions a helper file.
+	// It's used into other side.
+	exports._test = {
+		cmpVersions: cmpVersions
+	}
+}

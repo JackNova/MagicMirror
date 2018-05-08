@@ -1,3 +1,41 @@
+(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+module.exports={
+    "defaults":
+		{
+			"maximumEntries": 10, 
+			"maximumNumberOfDays": 365,
+			"displaySymbol": true,
+			"defaultSymbol": "calendar", 
+			"displayRepeatingCountTitle": false,
+			"defaultRepeatingCountTitle": "",
+			"maxTitleLength": 25,
+			"wrapEvents": false, 
+			"fetchInterval": 300000,
+			"animationSpeed": 2000,
+			"fade": true,
+			"urgency": 7,
+			"timeFormat": "relative",
+			"dateFormat": "MMM Do",
+			"fullDayEventDateFormat": "MMM Do",
+			"getRelative": 6,
+			"fadePoint": 0.25, 
+			"hidePrivate": false,
+			"colored": false,
+			"calendars": [
+				{
+					"symbol": "calendar",
+					"url": "http://www.calendarlabs.com/templates/ical/US-Holidays.ics"
+				}
+			],
+			"titleReplace": {
+				"De verjaardag van ": "",
+				"'s birthday": ""
+			},
+			"broadcastEvents": true,
+			"excludedEvents": []
+		}
+}
+},{}],2:[function(require,module,exports){
 /* global Module */
 
 /* Magic Mirror
@@ -7,42 +45,13 @@
  * MIT Licensed.
  */
 
+const defaultConfig = require ('../defaultConfig.json');
+Log.info("Module calendar configuration: " + JSON.stringify(defaultConfig.defaults));
+
 Module.register("calendar", {
 
 	// Define module defaults
-	defaults: {
-		maximumEntries: 10, // Total Maximum Entries
-		maximumNumberOfDays: 365,
-		displaySymbol: true,
-		defaultSymbol: "calendar", // Fontawesome Symbol see http://fontawesome.io/cheatsheet/
-		displayRepeatingCountTitle: false,
-		defaultRepeatingCountTitle: "",
-		maxTitleLength: 25,
-		wrapEvents: false, // wrap events to multiple lines breaking at maxTitleLength
-		fetchInterval: 5 * 60 * 1000, // Update every 5 minutes.
-		animationSpeed: 2000,
-		fade: true,
-		urgency: 7,
-		timeFormat: "relative",
-		dateFormat: "MMM Do",
-		fullDayEventDateFormat: "MMM Do",
-		getRelative: 6,
-		fadePoint: 0.25, // Start on 1/4th of the list.
-		hidePrivate: false,
-		colored: false,
-		calendars: [
-			{
-				symbol: "calendar",
-				url: "http://www.calendarlabs.com/templates/ical/US-Holidays.ics",
-			},
-		],
-		titleReplace: {
-			"De verjaardag van ": "",
-			"'s birthday": ""
-		},
-		broadcastEvents: true,
-		excludedEvents: []
-	},
+	defaults: defaultConfig.defaults,
 
 	// Define required scripts.
 	getStyles: function () {
@@ -530,3 +539,5 @@ Module.register("calendar", {
 
 	}
 });
+
+},{"../defaultConfig.json":1}]},{},[2]);

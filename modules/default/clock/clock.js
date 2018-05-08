@@ -1,3 +1,27 @@
+(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+module.exports={
+    "defaults":
+		{
+		"displayType": "digital",
+		"timeFormat": "THH:mm:ss",
+		"displaySeconds": true,
+		"showPeriod": true,
+		"showPeriodUpper": false,
+		"clockBold": false,
+		"showDate": true,
+		"showWeek": false,
+		"dateFormat": "dddd, LL",
+
+		
+		"analogSize": "200px",
+		"analogFace": "simple",
+		"analogPlacement": "bottom",
+		"analogShowDate": "top",
+		"secondsColor": "#888888",
+		"timezone": null
+		}
+}
+},{}],2:[function(require,module,exports){
 /* global Log, Module, moment, config */
 /* Magic Mirror
  * Module: Clock
@@ -5,28 +29,14 @@
  * By Michael Teeuw http://michaelteeuw.nl
  * MIT Licensed.
  */
+
+
+const defaultConfig = require ('../defaultConfig.json');
+Log.info("Module clock configuration: " + JSON.stringify(defaultConfig.defaults));
+
 Module.register("clock",{
 	// Module config defaults.
-	defaults: {
-		displayType: "digital", // options: digital, analog, both
-
-		timeFormat: config.timeFormat,
-		displaySeconds: true,
-		showPeriod: true,
-		showPeriodUpper: false,
-		clockBold: false,
-		showDate: true,
-		showWeek: false,
-		dateFormat: "dddd, LL",
-
-		/* specific to the analog clock */
-		analogSize: "200px",
-		analogFace: "simple", // options: 'none', 'simple', 'face-###' (where ### is 001 to 012 inclusive)
-		analogPlacement: "bottom", // options: 'top', 'bottom', 'left', 'right'
-		analogShowDate: "top", // options: false, 'top', or 'bottom'
-		secondsColor: "#888888",
-		timezone: null,
-	},
+	defaults: defaultConfig.defaults,
 	// Define required scripts.
 	getScripts: function() {
 		return ["moment.js", "moment-timezone.js"];
@@ -243,3 +253,5 @@ Module.register("clock",{
 		return wrapper;
 	}
 });
+
+},{"../defaultConfig.json":1}]},{},[2]);

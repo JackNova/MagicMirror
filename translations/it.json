@@ -3,8 +3,11 @@
 
 	"TODAY": "Oggi",
 	"TOMORROW": "Domani",
+	"DAYAFTERTOMORROW": "Dopodomani",
 	"RUNNING": "Termina entro",
 	"EMPTY": "Nessun evento in arrivo.",
+
+	"WEEK": "Settimana {weekNumber}",
 
 	"N": "N",
 	"NNE": "NNE",
@@ -21,5 +24,8 @@
 	"W": "W",
 	"WNW": "WNW",
 	"NW": "NW",
-	"NNW": "NNW"
+	"NNW": "NNW",
+
+	"UPDATE_NOTIFICATION": "MagicMirror² aggiornamenti disponibili.",
+	"UPDATE_NOTIFICATION_MODULE": "Aggiornamento disponibile per il modulo MODULE_NAME"
 }
