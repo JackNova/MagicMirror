@@ -1,0 +1,17 @@
+{
+	"displayType": "digital",
+	"timeFormat": "THH:mm:ss",
+	"displaySeconds": true,
+	"showPeriod": true,
+	"showPeriodUpper": false,
+	"clockBold": false,
+	"showDate": true,
+	"showWeek": false,
+	"dateFormat": "dddd, LL",
+	"analogSize": "200px",
+	"analogFace": "simple",
+	"analogPlacement": "bottom",
+	"analogShowDate": "top",
+	"secondsColor": "#888888",
+	"timezone": null
+}

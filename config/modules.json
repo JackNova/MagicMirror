@@ -1,0 +1,39 @@
+{
+	"modules": [
+		{
+			"module": "alert"
+		},
+		{
+			"module": "helloworld",
+			"position": "bottom_bar"
+		},
+		{
+			"module": "calendar",
+			"position": "top_left"
+		},
+		{
+			"module": "clock",
+			"position": "top_left"
+		},
+		{
+			"module": "compliments",
+			"position": "lower_third"
+		},
+		{
+			"module": "currentweather",
+			"position": "top_right"
+		},
+		{
+			"module": "newsfeed",
+			"position": "bottom_bar"	
+		},
+		{
+			"module": "updatenotification",
+			"position": "top_center"
+		},
+		{
+			"module": "weatherforecast",
+			"position": "top_right"
+		}
+	]
+}

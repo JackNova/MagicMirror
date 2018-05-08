@@ -1,0 +1,33 @@
+{
+	"maximumEntries": 10,
+	"maximumNumberOfDays": 365,
+	"displaySymbol": true,
+	"defaultSymbol": "calendar",
+	"displayRepeatingCountTitle": false,
+	"defaultRepeatingCountTitle": "",
+	"maxTitleLength": 25,
+	"wrapEvents": false,
+	"fetchInterval": 300000,
+	"animationSpeed": 2000,
+	"fade": true,
+	"urgency": 7,
+	"timeFormat": "relative",
+	"dateFormat": "MMM Do",
+	"fullDayEventDateFormat": "MMM Do",
+	"getRelative": 6,
+	"fadePoint": 0.25,
+	"hidePrivate": false,
+	"colored": false,
+	"calendars": [
+		{
+			"symbol": "calendar",
+			"url": "http://www.calendarlabs.com/templates/ical/US-Holidays.ics"
+		}
+	],
+	"titleReplace": {
+		"De verjaardag van ": "",
+		"'s birthday": ""
+	},
+	"broadcastEvents": true,
+	"excludedEvents": []
+}

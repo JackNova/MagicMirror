@@ -1,0 +1,29 @@
+{
+	"feeds": [
+		{
+			"title": "New York Times",
+			"url": "http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml",
+			"encoding": "UTF-8"
+		}
+	],
+	"showSourceTitle": true,
+	"showPublishDate": true,
+	"showDescription": false,
+	"wrapTitle": true,
+	"wrapDescription": true,
+	"truncDescription": true,
+	"lengthDescription": 400,
+	"hideLoading": false,
+	"reloadInterval": 300000,
+	"updateInterval": 10000,
+	"animationSpeed": 2500,
+	"maxNewsItems": 0,
+	"ignoreOldItems": false,
+	"ignoreOlderThan": 86400000,
+	"removeStartTags": "",
+	"removeEndTags": "",
+	"startTags": [],
+	"endTags": [],
+	"prohibitedWords": [],
+	"scrollLength": 500
+}

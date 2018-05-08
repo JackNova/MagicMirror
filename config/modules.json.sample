@@ -1,0 +1,104 @@
+{
+    "modules": [
+		{
+			"module": "alert",
+			"config": {
+				"effect": "genie"
+			}
+        },
+        
+		{
+			"module": "helloworld",
+			"position": "top_bar"
+        },
+        
+		{
+			"module": "updatenotification",
+			"position": "top_bar"
+        },
+        
+		{
+			"module": "compliments",
+			"position": "top_center",
+			"config": {
+				"compliments": {
+					"day_sunny": [
+						"Oggi c'è il sole!"
+					],
+					"snow": [
+						"Neve!"
+					],
+					"fog": [
+						"Nebbioso!"
+					],
+					"rain": [
+						"Non dimenticarti l'ombrello!"
+					],
+					"showers": [
+						"Non dimenticarti l'ombrello!"
+					],
+					"thunderstorm": [
+						"Tempesta! Non dimenticarti l'ombrello!"
+					],
+					"cloudy": [
+						"Nuvoloso!"
+					],
+					"cloudy_windy": [
+						"Nuvoloso!"
+					],
+					"day_cloudy": [
+						"Nuvoloso!"
+					],
+					"night_cloudy":  [
+						"Nuvoloso!"
+					],
+					"night_alt_cloudy_windy":  [
+						"Nuvoloso!"
+					]
+				}
+			}
+        },
+        
+		{
+			"module": "calendar",
+			"header": "Calendario",
+			"position": "bottom_left",
+			"config": {
+				"calendars": [
+					{
+						"symbol": "calendar",
+                        "url": "https://www.google.com/calendar/ical/it.italian%23holiday%40group.v.calendar.google.com/public/basic.ics"
+					}
+				]
+			}
+        },
+        
+		{
+			"module": "currentweather",
+			"header": "Meteo",
+			"position": "bottom_right",
+			"config": {
+				"location": "Bologna,Italy",
+				"locationID": "6541998", 
+				"appid": "c8a051f606a8b2ed9d42448dd4ddbd87",
+				"onlyTemp": true
+			}
+        },
+        
+		{
+			"module": "newsfeed",
+			"position": "middle_center"
+        },
+        
+		{
+			"module": "weatherforecast",
+			"position": "bottom_right",
+			"header": "Previsioni",
+			"config": {
+				"location": "Bologna",
+				"locationID": "6541998", 
+				"appid": "c8a051f606a8b2ed9d42448dd4ddbd87"
+			}
+		}
+	]
+}
