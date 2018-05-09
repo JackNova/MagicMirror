@@ -70,6 +70,16 @@ var Server = function(config, callback) {
 		res.send(html);
 	});
 
+	/*
+	Pagina dedicata alla configurazione dei moduli
+	*/
+
+	app.get("/modulesconfig", function(req, res) {
+		var html = fs.readFileSync(path.resolve(global.root_path + "/modules.html"), {encoding: "utf8"});
+		
+		res.send(html);
+	});
+
 	if (typeof callback === "function") {
 		callback(app, io);
 	}
