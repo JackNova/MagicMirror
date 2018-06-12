@@ -63,7 +63,7 @@ var App = function () {
 		try {
 			fs.accessSync(configFilename, fs.F_OK);
 			var c = require(configFilename);
-
+			delete require.cache[require.resolve("../config/modules.json")];
 			const modules = require("../config/modules.json").modules;
 
 			c.modules = modules;
@@ -206,10 +206,12 @@ var App = function () {
 	 *
 	 * argument callback function - The callback function.
 	 */
+	const coreApp = this;
+
 	this.start = function (callback) {
 
 		loadConfig(function (c) {
-			
+			console.log("loaded config", c);
 			config = c;
 			var aviableModules = [];
 
@@ -228,7 +230,8 @@ var App = function () {
 
 			const params = {
 				aviableModules: aviableModules,
-				config: config
+				config: config,
+				coreApp: coreApp
 			};
 
 			var modules = [];
@@ -255,6 +258,7 @@ var App = function () {
 					}
 
 					console.log("Sockets connected & modules started ...");
+					// manda una refresh alla window
 
 					if (typeof callback === "function") {
 						callback(config);
@@ -270,14 +274,22 @@ var App = function () {
 	 * This calls each node_helper's STOP() function, if it exists.
 	 * Added to fix #1056
 	 */
-	this.stop = function () {
+	this.stop = function (cb) {
 		for (var h in nodeHelpers) {
 			var nodeHelper = nodeHelpers[h];
 			if (typeof nodeHelper.stop === "function") {
 				nodeHelper.stop();
 			}
 		}
+
+		if(cb && typeof cb === "function") {
+			cb();
+		}
 	};
+
+	this.restart = function () {
+		this.stop(this.start());
+	}
 
 	/* Listen for SIGINT signal and call stop() function.
 	 *

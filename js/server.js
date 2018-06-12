@@ -20,6 +20,8 @@ var Server = function(params, callback) {
     const config = params.config;
     const aviableModules = params.aviableModules;
 
+    const coreApp = params.coreApp;
+
     let moduliDisponibili = ""; // Moduli disponibli ma non presenti nel file config
     let pathDefault = "modules/default";
     let pathCustom = "modules/custom";
@@ -157,6 +159,9 @@ var Server = function(params, callback) {
                 err
             ) {
                 if (err) throw err;
+                else {
+                    coreApp.restart();
+                }
             });
         });
     });
