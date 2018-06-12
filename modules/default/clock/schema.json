@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "timeFormat": {
+        "type": "string"
+    },
+    "displaySeconds": {
+        "type": "boolean"
+    },
+    "showPeriod": {
+        "type": "boolean"
+    },
+    "showPeriodUpper":{
+        "type": "boolean"
+    },
+    "clockBold":{
+        "type": "boolean"
+    },
+    "showDate":{
+        "type": "boolean"
+    },
+    "showWeek":{
+        "type": "boolean"
+    },
+    "dateFormat":{
+        "type": "string"
+    },
+    "displayType":{
+        "type": "string"
+    },
+    "analogSize":{
+        "type": "string"
+    },
+    "analogFace":{
+        "type": "string"
+    },
+    "secondsColor":{
+        "type": "string"
+    },
+    "analogPlacement":{
+        "type": "string"
+    },
+    "analogShowDate":{
+        "type": "string"
+    },
+    "timezone":{
+        "type": "string"
+    }  
+}

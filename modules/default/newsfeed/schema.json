@@ -1,0 +1,6 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "feeds": {
+        "type": "string"
+    }
+}

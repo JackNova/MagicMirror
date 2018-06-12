@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "updateInterval": {
+        "type": "integer",
+        "minimum": 1000,
+        "maximum": 86400000
+    },
+    "fadeSpeed": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 5000
+    },
+    "morningStartTime": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 24
+    },
+    "morningEndTime": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 24
+    },
+    "afternoonStartTime": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 24
+    },
+    "afternoonEndTime": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 24
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "maximumEntries": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 100
+    },
+    "maximumNumberOfDays": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 365
+    },
+    "displaySymbol": {
+        "type": "boolean"
+    },
+    "maxTitleLenght":{
+        "type": "integer",
+        "minimum": 10,
+        "maximum": 50
+    },
+    "wrapEvents":{
+        "type": "boolean"
+    },
+    "fetchInterval":{
+        "type": "integer",
+        "minimum": 1000,
+        "maximum": 86400000
+    },
+    "animationSpeed":{
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 5000
+    },
+    "fade":{
+        "type": "boolean"
+    },
+    "fadePoint":{
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+    }
+    
+}
