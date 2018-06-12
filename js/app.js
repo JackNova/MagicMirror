@@ -213,7 +213,7 @@ var App = function () {
 			config = c;
 			var aviableModules = [];
 
-			fs.readdir("/Users/admin/Progetto/TESTING/MagicMirror/modules/default", function (err, files) {
+			fs.readdir(__dirname + "/../modules/default", function (err, files) {
 				if (!err){
 					files.forEach(element => {
 						if(element.indexOf("js") == -1){

@@ -14,7 +14,7 @@ var ipfilter = require("express-ipfilter").IpFilter;
 var fs = require("fs");
 var helmet = require("helmet");
 var Utils = require(__dirname + "/utils.js");
-const modules = require("/Users/admin/Progetto/TESTING/MagicMirror/config/modules.json");
+const modules = require(__dirname + "/../config/modules.json");
 
 var Server = function(params, callback) {
     const config = params.config;
