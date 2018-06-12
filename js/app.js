@@ -11,6 +11,7 @@ var Utils = require(__dirname + "/utils.js");
 var defaultModules = require(__dirname + "/../modules/default/defaultmodules.js");
 var path = require("path");
 
+
 // Get version number.
 global.version = JSON.parse(fs.readFileSync("package.json", "utf8")).version;
 console.log("Starting MagicMirror: v" + global.version);
@@ -39,7 +40,7 @@ process.on("uncaughtException", function (err) {
 
 /* App - The core app.
  */
-var App = function() {
+var App = function () {
 	var nodeHelpers = [];
 
 	/* loadConfig(callback)
@@ -49,26 +50,26 @@ var App = function() {
 	 * argument callback function - The callback function.
 	 */
 
-	var loadConfig = function(callback) {
-		
+	var loadConfig = function (callback) {
+
 		console.log("Loading config ...");
 		var defaults = require(__dirname + "/defaults.js");
 
 		var configFilename = path.resolve(global.root_path + "/config/config.js");
-		if (typeof(global.configuration_file) !== "undefined") {
-		    configFilename = path.resolve(global.configuration_file);
+		if (typeof (global.configuration_file) !== "undefined") {
+			configFilename = path.resolve(global.configuration_file);
 		}
 
 		try {
 			fs.accessSync(configFilename, fs.F_OK);
 			var c = require(configFilename);
-			
+
 			const modules = require("../config/modules.json").modules;
 
 			c.modules = modules;
 			//checkDeprecatedOptions(c); CONTROLLARE
 			var config = Object.assign(defaults, c);
-			
+
 			callback(config);
 		} catch (e) {
 			if (e.code == "ENOENT") {
@@ -76,19 +77,19 @@ var App = function() {
 			} else if (e instanceof ReferenceError || e instanceof SyntaxError) {
 				console.error(Utils.colors.error("WARNING! Could not validate config file. Please correct syntax errors. Starting with default configuration." + e));
 			} else {
-				console.error(Utils.colors.error("WARNING! Could not load config file. Starting with default configuration. Error found: " + e ));
+				console.error(Utils.colors.error("WARNING! Could not load config file. Starting with default configuration. Error found: " + e));
 			}
 			callback(defaults);
 		}
 	};
 
-	var checkDeprecatedOptions = function(userConfig) {
+	var checkDeprecatedOptions = function (userConfig) {
 		var deprecated = require('/Users/admin/Desktop/defaults.js');
 		var deprecatedOptions = deprecated.configs;
 
 		var usedDeprecated = [];
 
-		deprecatedOptions.forEach(function(option) {
+		deprecatedOptions.forEach(function (option) {
 			if (userConfig.hasOwnProperty(option)) {
 				usedDeprecated.push(option);
 			}
@@ -107,14 +108,14 @@ var App = function() {
 	 *
 	 * argument module string - The name of the module (including subpath).
 	 */
-	var loadModule = function(module, callback) {
+	var loadModule = function (module, callback) {
 
 		var elements = module.split("/");
 		var moduleName = elements[elements.length - 1];
-		var moduleFolder =  __dirname + "/../modules/" + module;
+		var moduleFolder = __dirname + "/../modules/" + module;
 
 		if (defaultModules.indexOf(moduleName) !== -1) {
-			moduleFolder =  __dirname + "/../modules/default/" + module;
+			moduleFolder = __dirname + "/../modules/default/" + module;
 		}
 
 		var helperPath = moduleFolder + "/node_helper.js";
@@ -156,13 +157,13 @@ var App = function() {
 	 *
 	 * argument module string - The name of the module (including subpath).
 	 */
-	var loadModules = function(modules, callback) {
+	var loadModules = function (modules, callback) {
 		console.log("Loading module helpers ...");
 
-		var loadNextModule = function() {
+		var loadNextModule = function () {
 			if (modules.length > 0) {
 				var nextModule = modules[0];
-				loadModule(nextModule, function() {
+				loadModule(nextModule, function () {
 					modules = modules.slice(1);
 					loadNextModule();
 				});
@@ -205,10 +206,30 @@ var App = function() {
 	 *
 	 * argument callback function - The callback function.
 	 */
-	this.start = function(callback) {
+	this.start = function (callback) {
 
-		loadConfig(function(c) {
+		loadConfig(function (c) {
+			
 			config = c;
+			var aviableModules = [];
+
+			fs.readdir("/Users/admin/Progetto/TESTING/MagicMirror/modules/default", function (err, files) {
+				if (!err){
+					files.forEach(element => {
+						if(element.indexOf("js") == -1){
+							aviableModules.push(element);
+						}
+					});
+				}else
+					throw err;
+			});
+
+			console.log(aviableModules);
+
+			const params = {
+				aviableModules: aviableModules,
+				config: config
+			};
 
 			var modules = [];
 
@@ -219,8 +240,11 @@ var App = function() {
 				}
 			}
 
-			loadModules(modules, function() {
-				var server = new Server(config, function(app, io) {
+			loadModules(modules, function () {
+
+
+
+				var server = new Server(params, function (app, io) {
 					console.log("Server started ...");
 
 					for (var h in nodeHelpers) {
@@ -246,7 +270,7 @@ var App = function() {
 	 * This calls each node_helper's STOP() function, if it exists.
 	 * Added to fix #1056
 	 */
-	this.stop = function() {
+	this.stop = function () {
 		for (var h in nodeHelpers) {
 			var nodeHelper = nodeHelpers[h];
 			if (typeof nodeHelper.stop === "function") {
