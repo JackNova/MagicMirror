@@ -1,10 +1,152 @@
 <!DOCTYPE html>
-<html>
-    <head>
-    </head>
-    <body>
-        <div>
-            PROVA
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Module Configurator</title>
+    <link href="/css/modules.css" rel="stylesheet">
+</head>
+
+<body>
+    <main>
+        <div data-slot="top_bar">
+            <div class="button-bar">
+                <button type="button" name="add" id="add-top-bar" class="add-buttons">
+                    ➕
+                </button>
+            </div>
         </div>
-    </body>
+        <div data-slot="top_left">
+            <div class="button-bar">
+                <button type="button" name="add" id="add-top-left" class="add-buttons">
+                    ➕
+                </button>
+            </div>
+        </div>
+        <div data-slot="top_center">
+            <div class="button-bar">
+                <button type="button" name="add" id="add-top-center" class="add-buttons">
+                    ➕
+                </button>
+            </div>
+        </div>
+        <div data-slot="top_right">
+            <div class="button-bar">
+                <button type="button" name="add" id="add-top-right" class="add-buttons">
+                    ➕
+                </button>
+            </div>
+        </div>
+        <div data-slot="bottom_left">
+            <div class="button-bar">
+                <button type="button" name="add" id="add-bottom-left" class="add-buttons">
+                    ➕
+                </button>
+            </div>
+        </div>
+        <div data-slot="bottom_center">
+            <div class="button-bar">
+                <button type="button" name="add" id="add-bottom-center" class="add-buttons">
+                    ➕
+                </button>
+            </div>
+        </div>
+        <div data-slot="bottom_right">
+            <div class="button-bar">
+                <button type="button" name="add" id="add-bottom-right" class="add-buttons">
+                    ➕
+                </button>
+            </div>
+        </div>
+        <div data-slot="upper_third">
+            <div class="button-bar">
+                <button type="button" name="add" id="add-upper-third" class="add-buttons">
+                    ➕
+                </button>
+            </div>
+        </div>
+        <div data-slot="middle_center">
+            <div class="button-bar">
+                <button type="button" name="add" id="add-middle-center" class="add-buttons">
+                    ➕
+                </button>
+            </div>
+        </div>
+        <div data-slot="lower_third">
+            <div class="button-bar">
+                <button type="button" name="add" id="add-lower-third" class="add-buttons">
+                    ➕
+                </button>
+            </div>
+        </div>
+        <div data-slot="full_above">
+            <div class="button-bar">
+                <button type="button" name="add" id="add-full-above" class="add-buttons">
+                    ➕
+                </button>
+            </div>
+        </div>
+        <div data-slot="full_below">
+            <div class="button-bar">
+                <button type="button" name="add" id="add-full-below" class="add-buttons">
+                    ➕
+                </button>
+            </div>
+        </div>
+        <div data-slot="bottom_bar">
+            <div class="button-bar">
+                <button type="button" name="add" id="add-bottom-bar" class="add-buttons">
+                    ➕
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <div hidden class="add-wrapper" id="AddWindow">
+        <div class="add-box">
+            <header name="header">
+                
+            </header>
+            <section id="addSection">
+                <select id="addSelect">
+                    
+                </select>
+            </section>
+            <footer>
+                <span>
+                    <input type="button" id="add_button_annulla" name="Annulla" value="Annulla">
+                    <input type="submit" id="add_button_conferma" name="Conferma" value="Conferma">
+                </span>
+            </footer>
+        </div>
+    </div>
+
+    <div hidden class="dialog-wrapper" id="SettingsForm">
+        <div class="form-box">
+            <header name="header">
+                
+            </header>
+            <section id="dialogSection">
+                <form name="settings" id="form">
+                    
+                </form>
+            </section>
+            <footer>
+                <span>
+                    <input type="button" id="form_button_annulla" name="Annulla" value="Annulla">
+                    <input type="submit" id="form_button_conferma" name="Conferma" value="Conferma">
+                </span>
+            </footer>
+        </div>
+    </div>
+    <script src="/js/modulesconfig.js" type="module"></script>
+    <div class= "buttonsaveconfig" id="savingconfig">
+        <button type="button" id="saveconfig">
+            Save Configuration
+        </button>
+    </div>
+</body>
+
 </html>
