@@ -1,0 +1,312 @@
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #000;
+    color: #aaa;
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 9vw 27vw 27vw 27vw 9vw;
+    grid-template-rows: 9vw 18vw 9vw 9vw 18vw 9vw;
+    grid-template-areas:
+        ". top_bar top_bar top_bar full_above"
+        "upper_third top_left top_center top_right full_above"
+        "middle_center top_left top_center top_right full_above"
+        "middle_center bottom_left bottom_center bottom_right full_below"
+        "lower_third bottom_left bottom_center bottom_right full_below"
+        ". bottom_bar bottom_bar bottom_bar full_below";
+}
+
+[data-slot] {
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-size: 1.5vw;
+}
+
+[data-slot="top_bar"] {
+    grid-area: top_bar;
+}
+
+[data-slot="top_left"] {
+    grid-area: top_left;
+}
+
+[data-slot="top_center"] {
+    grid-area: top_center;
+}
+
+[data-slot="top_right"] {
+    grid-area: top_right;
+}
+
+[data-slot="bottom_bar"] {
+    grid-area: bottom_bar;
+}
+
+[data-slot="bottom_left"] {
+    grid-area: bottom_left;
+}
+
+[data-slot="bottom_center"] {
+    grid-area: bottom_center;
+}
+
+[data-slot="bottom_right"] {
+    grid-area: bottom_right;
+}
+
+[data-slot="upper_third"] {
+    grid-area: upper_third;
+}
+
+[data-slot="lower_third"] {
+    grid-area: lower_third;
+}
+
+[data-slot="middle_center"] {
+    grid-area: middle_center;
+}
+
+[data-slot="full_above"] {
+    grid-area: full_above;
+}
+
+[data-slot="full_below"] {
+    grid-area: full_below;
+}
+
+.button-bar {
+    position: absolute;
+    bottom: 1vw;
+    left: 1vw;
+    justify-content: center;
+    align-content: center;
+}
+
+.button-bar > button {
+    border-radius: 100%;
+    font-size: 100%;
+    font-family: inherit;
+    width: 2em;
+    height: 2em;
+    border: none;
+    padding: 0;
+}
+
+span {
+    justify-content: center;
+    align-content: center;
+    font-size: 100%;
+}
+
+span button {
+    border-radius: 100%;
+    font-size: 70%;
+    font-family: inherit;
+    width: 1.5em;
+    height: 1.5em;
+    border: none;
+    padding: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+}
+
+.form-box {
+    background-color: white;
+    color: #333333;
+    border: 0;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    vertical-align: middle;
+    line-height: 100%;
+
+}
+
+.form-box button {
+    font-family: inherit;
+    font-size: 100%;
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: 1px solid;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}
+
+.form-box header {
+    display: flex;
+    align-items: center;
+    height: 15%;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    border-left: 1px solid;
+    justify-content: center;
+}
+
+.form-box section {
+    align-items: center;
+    border: 1px solid;
+    justify-content: center;
+    font-size: 50px;
+}
+
+.form-box footer {
+    display: flex;
+    align-items: center;
+    height: 15%;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+    border-left: 1px solid;
+    justify-content: center;
+}
+
+.dialog-wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.dialog-wrapper section {
+    max-height: 60vh;
+    height: 100%;
+    overflow: auto;
+}
+
+.dialog-wrapper section form{
+    height: 100%;
+}
+
+/* label {
+    font-size: 15px;
+    display: inline-block;
+    float: left;
+    clear: left;
+    text-align: right;
+}
+
+input {
+    float: right;
+    display: block;
+} */
+
+.divText {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2px;
+    justify-content: center;
+    align-content: center;
+}
+.divText label {
+    font-size: 15px;
+    margin-right: 10px;
+    text-align: right;
+}
+
+.divCheckBox {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2px;
+    justify-content: center;
+    align-content: center;
+}
+
+.divCheckBox label {
+    font-size: 15px;
+    margin-right: 10px;
+    text-align: right;
+}
+
+.divNumbers {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2px;
+    justify-content: center;
+    align-content: center;
+}
+
+.divNumbers label {
+    font-size: 15px;
+    margin-right: 10px;
+    text-align: right;
+}
+
+.divNumbers, .divCheckBox, .divText {
+    height: 3.5rem;
+}
+
+.buttonsaveconfig {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 1vh;
+}
+
+.buttonsaveconfig button {
+    height: 2em;
+}
+
+.add-wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-wrapper header{
+    border-top: 1px solid;
+    border-right: 1px solid;
+    border-left: 1px solid;
+    justify-content: center;
+}
+
+.add-wrapper section{
+    border-top: 1px solid;
+    border-right: 1px solid;
+    border-left: 1px solid;
+    justify-content: center;
+}
+
+.add-wrapper footer {
+    border-top: 1px solid;
+    border-right: 1px solid;
+    border-left: 1px solid;
+    justify-content: center;
+}
