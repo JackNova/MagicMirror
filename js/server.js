@@ -34,6 +34,7 @@ var Server = function(params, callback) {
 
     console.log("Starting server on port " + port + " ... ");
 
+    if (!server.listening)
     server.listen(port, config.address ? config.address : null);
 
     if (config.ipWhitelist instanceof Array && config.ipWhitelist.length == 0) {

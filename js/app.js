@@ -258,7 +258,7 @@ var App = function () {
 					}
 
 					console.log("Sockets connected & modules started ...");
-					// manda una refresh alla window
+                    io.emit("refresh");
 
 					if (typeof callback === "function") {
 						callback(config);
